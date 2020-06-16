@@ -48,7 +48,9 @@ class Student
   end
 
   def self.new_from_db(row)
-    self.new(row[0], row[1], row[2])
+    obj = self.new(row[0], row[1], row[2])
+    print obj.id
+    obj
   end
 
   def update
