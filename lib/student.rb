@@ -51,6 +51,16 @@ class Student
     obj = self.new(row[1], row[2], row[0])
   end
 
+  def self.find_by_name(name)
+    sql = <<-SQL
+    SELECT * from students 
+    WHERE name = ?
+    LIMIT 1
+    SQL
+    result = DB[:conn].execute(sql, name)[0]
+    Student.new_from_db(result)
+  end
+
   def update
     sql = <<-SQL
     UPDATE students SET
